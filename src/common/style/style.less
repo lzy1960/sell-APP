@@ -1,0 +1,14 @@
+.clearfix {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    /*这句话可以触发BFC*/
+  }
+
+  &:after {
+    clear: both;
+  }
+}

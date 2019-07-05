@@ -27,9 +27,6 @@ export default {
   props: {
     logged: {
       type: Boolean
-    },
-    users: {
-      type: Array
     }
   },
   data() {
@@ -42,32 +39,21 @@ export default {
       this.$router.back(-1)
     },
     login() {
+      let user = window.localStorage.__user__
+      user = JSON.parse(user)
       let username = this.$refs.username.value
       let pwd = this.$refs.pwd.value
 
       if (!username || !pwd) {
         alert('用户名或密码为空！')
         return
-      }
-      if (this.users) {
-        this.users.forEach((user) => {
-          console.log(user)
-          if (user.id === username && user.pwd === pwd) {
-            this.loggedFn1 = true
-            this.$emit('login-in', this.loggedFn1)
-            this.$router.back(-2)
-          }
-        })
-      } else {
-        alert('用户名或密码错误！')
-      }
-      let user = window.localStorage.__user__
-      user = JSON.parse(user)
-      if (user[username] && pwd === loadFromLocal(username, '')) {
+      } else if (user && user[username] && pwd === loadFromLocal(username, '')) {
         this.loggedFn1 = true
         this.$emit('login-in', this.loggedFn1)
         alert('登录成功！')
         this.$router.back(-1)
+      } else {
+        alert('用户名或密码错误！')
       }
       // if (this.users) {
       //   this.users.forEach((user) => {

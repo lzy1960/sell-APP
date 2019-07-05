@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       favourite: (() => {
+        console.log(this.seller)
         return loadFromLocal(this.seller.id, 'favourite', false)
       })()
     }
@@ -142,6 +143,7 @@ export default {
         return
       }
       this.favourite = !this.favourite
+      console.log(this.seller.id)
       saveToLocal(this.seller.id, 'favourite', this.favourite)
     }
   },

@@ -41,9 +41,9 @@ export default {
     this.$axios.get('static/data.json').then((response) => {
       // response = response.data
       if (response.status === ERR_OK) {
-        this.seller = response.data
+        // this.seller = response.data
         this.seller = Object.assign({}, this.seller, response.data.seller)
-        // Object.assign()方法用于将所有可枚举属性的值从一个或多个原对象复制到目标对象。它将返回目标对象
+        // Object.assign()是ES6的方法，用于将所有可枚举属性的值从一个或多个原对象复制到目标对象。它将返回目标对象
         // response.data扩展了this.seller，赋值给空对象
       }
     })

@@ -26,5 +26,5 @@ export function formatDate(date, fmt) {
 
 function padLeftZero(str) {
   return ('00' + str).substr(str.length)
-  // 重要！！！补0算法
+  // 补0算法
 }

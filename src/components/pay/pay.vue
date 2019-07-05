@@ -69,8 +69,8 @@
     </transition>
     <transition name="move">
       <div>
-        <router-view :users="users" @login-in="_login" @registerFn1="_register"></router-view>
-        <router-view :logged="logged" @login-in="_login($event)" @registerFn1="_register($event)"></router-view>
+        <router-view @login-in="_login" @registerFn1="_register"></router-view>
+        <router-view @login-in="_login($event)" @registerFn1="_register($event)"></router-view>
       </div>
     </transition>
   </div>

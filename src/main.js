@@ -5,10 +5,8 @@ import axios from 'axios'
 import App from './App'
 import VueRouter from 'vue-router'
 import router from './router'
-import VueResource from 'vue-resource'
 
 Vue.use(VueRouter)
-Vue.use(VueResource)
 
 Vue.prototype.$axios = axios
 

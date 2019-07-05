@@ -128,7 +128,7 @@ export default {
         click: true
       })
       // BScroll接收两个参数，DOM对象和JSON对象
-      // 【this.$els.dom名】获取之前定义的DOM对象
+      // 【this.$refs.dom名】获取之前定义的DOM对象
       this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
         probeType: 3, // 监测实时滚动的位置
         click: true

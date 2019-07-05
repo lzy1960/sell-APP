@@ -5,7 +5,7 @@
 export function urlParse() {
   let url = window.location.search
   let obj = {}
-  let reg = /[?&][^?&]+=[^?&]+/g
+  let reg = /[?&][^?&#]+=[^?&#]+/g
   // 											+表示一个或多个
   // 					?    id  = 123  全局
   let arr = url.match(reg)

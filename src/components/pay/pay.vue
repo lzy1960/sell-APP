@@ -68,18 +68,17 @@
       <div class="list-mask" v-show="logboxShow"></div>
     </transition>
     <transition name="move">
-<<<<<<< HEAD
-      <router-view :users="users" @login-in="_login" @registerFn1="_register"></router-view>
-=======
-      <router-view :logged="logged" @login-in="_login($event)" @registerFn1="_register($event)"></router-view>
->>>>>>> 完成支付的流程
+      <div>
+        <router-view :users="users" @login-in="_login" @registerFn1="_register"></router-view>
+        <router-view :logged="logged" @login-in="_login($event)" @registerFn1="_register($event)"></router-view>
+      </div>
     </transition>
   </div>
 </template>
 <script>
 import BScroll from 'better-scroll'
 
-const ERR_OK = 0
+const ERR_OK = 200
 
 export default {
   props: {
@@ -97,12 +96,8 @@ export default {
     return {
       pay: {},
       logboxShow: false,
-<<<<<<< HEAD
       logged: false,
       users: []
-=======
-      logged: false
->>>>>>> 完成支付的流程
     }
   },
   updated() {
@@ -117,10 +112,10 @@ export default {
     }
   },
   created() {
-    this.$http.get('/api/pay').then((response) => {
-      response = response.body
-      if (response.errno === ERR_OK) {
-        this.pay = response.data
+    this.$axios.get('/static/data.json').then((response) => {
+      // response = response.body
+      if (response.status === ERR_OK) {
+        this.pay = response.data.pay
 
         this.$nextTick(() => {
           this.scroll = new BScroll(this.$refs.pay, {
@@ -148,13 +143,8 @@ export default {
       this.logboxShow = false
       this.$router.push(`${this.$route.path}/login`)
     },
-<<<<<<< HEAD
     _login(logged) {
       this.logged = logged
-=======
-    _login(loggedFn1) {
-      this.logged = loggedFn1
->>>>>>> 完成支付的流程
     },
     _register(usersFn1) {
       this.users = usersFn1

@@ -62,7 +62,7 @@ import { formatDate } from '../../common/js/date'
 import BScroll from 'better-scroll'
 
 const ALL = 2
-const ERR_OK = 0
+const ERR_OK = 200
 
 export default {
   props: {
@@ -79,10 +79,10 @@ export default {
     }
   },
   created() {
-    this.$http.get('/api/ratings').then((response) => {
-      response = response.body
-      if (response.errno === ERR_OK) {
-        this.ratings = response.data
+    this.$axios.get('/static/data.json').then((response) => {
+      // response = response.body
+      if (response.status === ERR_OK) {
+        this.ratings = response.data.ratings
         this.$nextTick(() => {
           this.scroll = new BScroll(this.$refs.ratings, {
             click: true

@@ -24,7 +24,7 @@
 import header from './components/header/header'
 import { urlParse } from './common/js/util'
 
-const ERR_OK = 0
+const ERR_OK = 200
 
 export default {
   data() {
@@ -38,12 +38,12 @@ export default {
     }
   },
   created() {
-    this.$http.get('api/seller').then((response) => {
-      response = response.body
-      if (response.errno === ERR_OK) {
-        // this.seller = response.data
-        this.seller = Object.assign({}, this.seller, response.data)
-        // Object.assign()方法用于将所有可没与苏醒的值从一个或多个原对象复制到目标对象。它将返回目标对象
+    this.$axios.get('static/data.json').then((response) => {
+      // response = response.data
+      if (response.status === ERR_OK) {
+        this.seller = response.data
+        this.seller = Object.assign({}, this.seller, response.data.seller)
+        // Object.assign()方法用于将所有可枚举属性的值从一个或多个原对象复制到目标对象。它将返回目标对象
         // response.data扩展了this.seller，赋值给空对象
       }
     })

@@ -53,7 +53,7 @@ import food from '../food/food'
 // 1. 要获取DOM，现在模板中添加【ref="名称"】，在script中使用【this.$refs.名称】就可以获取到这个DOM元素
 // 2. 需要计算DOM相关的内容时，需要在nextTick()中执行，否则不会渲染在页面上
 
-const ERR_OK = 0
+const ERR_OK = 200
 
 export default {
   props: {
@@ -103,15 +103,15 @@ export default {
   },
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-    this.$http.get('/api/goods').then((response) => {
-      response = response.body
-      if (response.errno === ERR_OK) {
-        this.goods = response.data
+    this.$axios.get('/static/data.json').then((response) => {
+      // response = response.data
+      if (response.status === ERR_OK) {
+        this.goods = response.data.goods
         // 滚动是异步执行在this.$nextTick中的
 
         // 在created()中进行的DOM操作一定要放在Vue.$nextTick()的回调函数中
         // 在created()钩子函数执行的时候，DOM元素并未进行任何渲染
-        // created()的nextTick对应的事mounted()
+        // created()的nextTick对应的是mounted()
         this.$nextTick(() => {
           this._initScroll() // 写在外面的话，获取DOM高度会出现问题
 

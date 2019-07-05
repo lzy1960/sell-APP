@@ -21,11 +21,8 @@
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-=======
 import { loadFromLocal } from '../../common/js/user'
 
->>>>>>> 完成支付的流程
 export default {
   props: {
     logged: {
@@ -52,7 +49,6 @@ export default {
         alert('用户名或密码为空！')
         return
       }
-<<<<<<< HEAD
       if (this.users) {
         this.users.forEach((user) => {
           console.log(user)
@@ -65,7 +61,6 @@ export default {
       } else {
         alert('用户名或密码错误！')
       }
-=======
       let user = window.localStorage.__user__
       user = JSON.parse(user)
       if (user[username] && pwd === loadFromLocal(username, '')) {
@@ -86,7 +81,6 @@ export default {
       // } else {
       //   alert('用户名或密码错误！')
       // }
->>>>>>> 完成支付的流程
     },
     register() {
       this.$router.push('register')

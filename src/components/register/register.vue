@@ -43,7 +43,6 @@ export default {
       let username = this.$refs.username.value
       let pwd = this.$refs.pwd.value
       let repPwd = this.$refs.repPwd.value
-<<<<<<< HEAD
       saveToLocal(username, pwd)
       // if (!username || !pwd || !repPwd) {
       //   alert('用户名或密码为空！')
@@ -53,7 +52,6 @@ export default {
       //   alert('两次输入的密码不一致！')
       //   return
       // }
-=======
       if (!username || !pwd || !repPwd) {
         alert('用户名或密码为空！')
         return
@@ -68,20 +66,16 @@ export default {
         alert('用户名已存在！')
         return
       }
->>>>>>> 完成支付的流程
       // let user = {}
       // user.id = username
       // user.pwd = pwd
       // this.usersFn1.push(user)
       // this.$emit('registerFn1', this.usersFn1)
-<<<<<<< HEAD
       // alert('注册成功！')
       // this.$router.push('login')
-=======
       saveToLocal(username, pwd)
       alert('注册成功！')
       this.$router.push('login')
->>>>>>> 完成支付的流程
     }
   }
 }

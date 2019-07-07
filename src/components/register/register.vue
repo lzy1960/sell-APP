@@ -43,7 +43,7 @@ export default {
       let username = this.$refs.username.value
       let pwd = this.$refs.pwd.value
       let repPwd = this.$refs.repPwd.value
-      saveToLocal(username, pwd)
+      // saveToLocal(username, pwd)
       // if (!username || !pwd || !repPwd) {
       //   alert('用户名或密码为空！')
       //   return
@@ -61,8 +61,8 @@ export default {
         return
       }
 
-      let user = window.localStorage.__user__
-      if (!user[username]) {
+      let user = JSON.parse(window.localStorage.__user__)
+      if (user && user[username]) {
         alert('用户名已存在！')
         return
       }

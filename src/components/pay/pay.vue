@@ -134,6 +134,7 @@ export default {
         this.logboxShow = true
       } else {
         alert('支付完成')
+        this.$router.back(-1)
       }
     },
     cancel() {

@@ -39,14 +39,16 @@ export default {
       this.$router.back(-1)
     },
     login() {
+      console.log(this.$route)
       let user = window.localStorage.__user__
-      user = JSON.parse(user)
+      if (user) {
+        user = JSON.parse(user)
+      }
       let username = this.$refs.username.value
       let pwd = this.$refs.pwd.value
 
       if (!username || !pwd) {
         alert('用户名或密码为空！')
-        return
       } else if (user && user[username] && pwd === loadFromLocal(username, '')) {
         this.loggedFn1 = true
         this.$emit('login-in', this.loggedFn1)

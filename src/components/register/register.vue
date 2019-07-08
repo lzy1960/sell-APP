@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.back(-1)
+      this.$router.go(-1)
     },
     register() {
       let username = this.$refs.username.value
@@ -60,22 +60,20 @@ export default {
         alert('两次输入的密码不一致！')
         return
       }
-
-      let user = JSON.parse(window.localStorage.__user__)
+      let user = window.localStorage.__user__
+      console.log(user)
+      if (user) {
+        user = JSON.parse(user)
+      }
+      console.log(user)
       if (user && user[username]) {
         alert('用户名已存在！')
         return
       }
-      // let user = {}
-      // user.id = username
-      // user.pwd = pwd
-      // this.usersFn1.push(user)
-      // this.$emit('registerFn1', this.usersFn1)
-      // alert('注册成功！')
-      // this.$router.push('login')
+
       saveToLocal(username, pwd)
       alert('注册成功！')
-      this.$router.push('login')
+      this.$router.go(-1)
     }
   }
 }

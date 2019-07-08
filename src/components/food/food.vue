@@ -18,7 +18,7 @@
             <del class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</del>
           </div>
           <div class="cartcontrol-wrapper">
-            <cartcontrol ref="cartcontrol" :food="food"></cartcontrol>
+            <cartcontrol ref="cartcontrol" :food="food" :isTrans="isTrans"></cartcontrol>
           </div>
           <transition name="fade">
             <div class="buy" @click="addFirst" v-show="!food.count || food.count===0">加入购物车</div>
@@ -81,7 +81,8 @@ export default {
         all: '全部',
         positive: '推荐',
         negative: '吐槽'
-      }
+      },
+      isTrans: false
     }
   },
   components: {
@@ -117,8 +118,15 @@ export default {
       if (!event._constructed) {
         return
       }
-      this.$emit('cart-add', event.target)
-      Vue.set(this.food, 'count', 1)
+      if (!this.isTrans) {
+        this.$emit('cart-add', event.target)
+        Vue.set(this.food, 'count', 1)
+        this.isTrans = true
+        let _this = this
+        setTimeout(() => {
+          this.isTrans = false
+        }, 400)
+      }
     },
     needShow(type, text) {
       if (this.onlyContent && !text) {

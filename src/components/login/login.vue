@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.back(-1)
+      this.$router.go(-1)
     },
     login() {
       console.log(this.$route)
@@ -53,22 +53,10 @@ export default {
         this.loggedFn1 = true
         this.$emit('login-in', this.loggedFn1)
         alert('登录成功！')
-        this.$router.back(-1)
+        this.$router.go(-1)
       } else {
         alert('用户名或密码错误！')
       }
-      // if (this.users) {
-      //   this.users.forEach((user) => {
-      //     console.log(user)
-      //     if (user.id === username && user.pwd === pwd) {
-      //       this.loggedFn1 = true
-      //       this.$emit('login-in', this.loggedFn1)
-      //       this.$router.back(-2)
-      //     }
-      //   })
-      // } else {
-      //   alert('用户名或密码错误！')
-      // }
     },
     register() {
       this.$router.push('register')

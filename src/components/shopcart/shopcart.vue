@@ -52,7 +52,7 @@
     </transition>
     <transition name="pay">
       <keep-alive>
-        <router-view :seller="seller" :selectFoods="selectFoods" :totalPrice="totalPrice" :minPrice="minPrice"></router-view>
+        <router-view :seller="seller" :selectFoods="selectFoodsFn1" :totalPrice="totalPrice" :minPrice="minPrice" @clear-foods="_clearFoods"></router-view>
       </keep-alive>
     </transition>
   </div>
@@ -105,7 +105,8 @@ export default {
         }
       ],
       dropBalls: [],
-      fold: true
+      fold: true,
+      selectFoodsFn1: this.selectFoods
     }
   },
   watch: {
@@ -234,6 +235,10 @@ export default {
         ball.show = false
         el.style.display = 'none'
       }
+    },
+    _clearFoods(foods) {
+      this.selectFoodsFn1 = foods
+      this.$emit('clear-foods', this.selectFoodsFn1)
     }
   }
 }

@@ -68,10 +68,7 @@
       <div class="list-mask" v-show="logboxShow"></div>
     </transition>
     <transition name="move">
-      <div>
-        <router-view @login-in="_login" @registerFn1="_register"></router-view>
-        <router-view @login-in="_login($event)" @registerFn1="_register($event)"></router-view>
-      </div>
+      <router-view :selectFoods="selectFoodsFn1" @login-in="_login" @registerFn1="_register" @clear-foods="_clearFoods"></router-view>
     </transition>
   </div>
 </template>
@@ -97,7 +94,8 @@ export default {
       pay: {},
       logboxShow: false,
       logged: false,
-      users: []
+      users: [],
+      selectFoodsFn1: this.selectFoods
     }
   },
   updated() {
@@ -127,14 +125,13 @@ export default {
   },
   methods: {
     back() {
-      this.$router.back(-1)
+      this.$router.go(-1)
     },
     submit() {
       if (!this.logged) {
         this.logboxShow = true
       } else {
-        alert('支付完成')
-        this.$router.back(-1)
+        this.$router.push(`${this.$route.path}/success`)
       }
     },
     cancel() {
@@ -149,6 +146,10 @@ export default {
     },
     _register(usersFn1) {
       this.users = usersFn1
+    },
+    _clearFoods(foods) {
+      this.selectFoodsFn1 = foods
+      this.$emit('clear-foods', this.selectFoodsFn1)
     }
   }
 }

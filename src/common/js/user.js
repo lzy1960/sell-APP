@@ -4,6 +4,8 @@ export function saveToLocal(id, pwd) {
 
   if (!user) {
     user = {}
+  } else {
+    user = JSON.parse(user)
   }
   user[id] = pwd
   window.localStorage.__user__ = JSON.stringify(user)

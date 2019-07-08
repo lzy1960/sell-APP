@@ -21,6 +21,9 @@ export default {
   props: {
     food: {
       type: Object
+    },
+    isTrans: {
+      type: Boolean
     }
   },
   methods: {
@@ -33,7 +36,6 @@ export default {
       } else {
         this.food.count++
       }
-
       this.$emit('cart-add', event.target)
       // $dispatch在vue2.0中已被弃用
       // $emit子组件向父组件传递数据，两个参数：派发的事件、DOM对象

@@ -6,6 +6,7 @@ import seller from '../components/seller/seller'
 import pay from '../components/pay/pay'
 import login from '../components/login/login'
 import register from '../components/register/register'
+import paysuccess from '../components/paysuccess/paysuccess'
 
 Vue.use(Router)
 
@@ -23,6 +24,10 @@ export default new Router({
       name: 'pay',
       component: pay,
       children: [{
+        path: 'success',
+        name: 'paysuccess',
+        component: paysuccess
+      }, {
         path: 'login',
         name: 'login',
         component: login

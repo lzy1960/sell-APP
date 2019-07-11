@@ -26,12 +26,12 @@
         </div>
         <split v-show="food.info"></split>
         <div class="info" v-show="food.info">
-          <h1 class="title">商品详情</h1>
+          <v-title>商品详情</v-title>
           <p class="text">{{food.info}}</p>
         </div>
         <split v-show="food.ratings"></split>
         <div class="rating">
-          <h1 class="title">商品评价</h1>
+          <v-title>商品评价</v-title>
           <ratingselect @ratingtype-select="_select($event)" @content-toggle="_toggleContent($event)" :select-type="selectType" :only-content="onlyContent" :description="description" :ratings="food.ratings"></ratingselect>
           <div class="rating-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
@@ -58,6 +58,7 @@ import Vue from 'vue'
 import BScroll from 'better-scroll'
 import cartcontrol from '../cartcontrol/cartcontrol'
 import split from '../split/split'
+import title from '../title/title'
 import ratingselect from '../ratingselect/ratingselect'
 import { formatDate } from '../../common/js/date'
 
@@ -88,7 +89,8 @@ export default {
   components: {
     cartcontrol,
     split,
-    ratingselect
+    ratingselect,
+    'v-title': title
   },
   filters: {
     formatDate(time) {
@@ -298,12 +300,6 @@ export default {
     .info {
       padding: 18px;
 
-      .title {
-        font-size: 14px;
-        line-height: 14px;
-        color: rgb(7, 17, 27);
-      }
-
       .text {
         font-size: 12px;
         line-height: 24px;
@@ -317,9 +313,6 @@ export default {
       padding-top: 18px;
 
       .title {
-        font-size: 14px;
-        line-height: 14px;
-        color: rgb(7, 17, 27);
         margin: 0 18px;
       }
 

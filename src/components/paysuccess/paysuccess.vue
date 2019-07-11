@@ -21,7 +21,9 @@ export default {
   },
   methods: {
     confirm() {
-      this.selectFoods = []
+      this.selectFoodsFn1.forEach((food) => {
+        food.count = 0
+      })
       this.$emit('clear-foods', this.selectFoodsFn1)
       this.$router.go(-2)
     }

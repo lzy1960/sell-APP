@@ -35,7 +35,7 @@
       </div>
       <split></split>
       <div class="bulletin">
-        <div class="title">公告与活动</div>
+        <v-title>公告与活动</v-title>
         <p class="content">{{seller.bulletin}}</p>
         <ul>
           <li class="bulletin-item" v-for="(item,index) in seller.supports" :key="index">
@@ -46,7 +46,7 @@
       </div>
       <split></split>
       <div class="pics">
-        <h1 class="title">商家实景</h1>
+        <v-title>商家实景</v-title>
         <div class="pic-wrapper" ref="picWrapper">
           <ul class="pic-list" ref="picList">
             <li class="pic-item" v-for="(pic,index) in seller.pics" :key="index">
@@ -57,7 +57,7 @@
       </div>
       <split></split>
       <div class="infos">
-        <h1 class="title">商家信息</h1>
+        <v-title>商家信息</v-title>
         <ul class="info-list">
           <li class="info-item" v-for="(info,index) in seller.infos" :key="index">{{seller.infos[index]}}</li>
         </ul>
@@ -68,6 +68,7 @@
 <script>
 import star from '../../components/star/star'
 import split from '../../components/split/split'
+import title from '../../components/title/title'
 import BScroll from 'better-scroll'
 import { saveToLocal, loadFromLocal } from '../../common/js/store'
 
@@ -149,7 +150,8 @@ export default {
   },
   components: {
     star,
-    split
+    split,
+    'v-title': title
   }
 }
 
@@ -257,14 +259,7 @@ export default {
     }
 
     .bulletin {
-      padding: 0 18px;
-
-      .title {
-        padding: 18px 0 8px;
-        font-size: 14px;
-        line-height: 14px;
-        color: rgb(7, 17, 27);
-      }
+      padding: 18px 18px 0;
 
       .content {
         font-size: 12px;
@@ -324,13 +319,6 @@ export default {
     .pics {
       padding: 18px;
 
-      .title {
-        font-size: 14px;
-        line-height: 14px;
-        color: rgb(7, 17, 27);
-        padding-bottom: 12px;
-      }
-
       .pic-wrapper {
         width: 100%;
         overflow: hidden;
@@ -353,13 +341,6 @@ export default {
 
     .infos {
       padding: 18px;
-
-      .title {
-        font-size: 14px;
-        line-height: 14px;
-        color: rgb(7, 17, 27);
-        padding-bottom: 12px;
-      }
 
       .info-list {
         .info-item {

@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-    <shopcart ref="shopcart" :seller="seller" :food="selectedFood" :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice" @clear-foods="_clearFoods"></shopcart>
+    <shopcart ref="shopcart" :seller="seller" :food="selectedFood" :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
     <!-- 组件上可以绑定从父组件传递的参数 -->
     <food @cart-add="_drop" ref="food" :food="selectedFood"></food>
   </div>
@@ -169,9 +169,6 @@ export default {
       this.$nextTick(() => {
         this.$refs.shopcart.drop(target)
       })
-    },
-    _clearFoods: function(foods) {
-      this.selectFoods = foods
     }
   }
 }

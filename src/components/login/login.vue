@@ -8,11 +8,14 @@
     </div>
     <div class="login-box">
       <div class="inputbox">
-        <input type="text" name="username" ref="username" placeholder="用户名">
+        <input type="text" name="username" ref="username" placeholder="用户名" v-model="username">
       </div>
       <div class="inputbox">
-        <input type="password" name="password" ref="pwd" placeholder="密码">
+        <input type="password" name="password" ref="pwd" placeholder="密码" @keyup.enter="login" v-model="pwd">
       </div>
+    </div>
+    <div class="remember" @click="toggleRemember">
+      <span class="iconfont icon-yes_fill" :class="{'yes': rememberPwd}"></span>记住密码
     </div>
     <div class="login-btn">
       <span class="btn" @click="login">登录</span>
@@ -22,6 +25,7 @@
 </template>
 <script>
 import { loadFromLocal } from '../../common/js/user'
+import { save, load } from '../../common/js/remember'
 
 export default {
   props: {
@@ -31,7 +35,10 @@ export default {
   },
   data() {
     return {
-      loggedFn1: this.logged
+      loggedFn1: this.logged,
+      rememberPwd: !!load('rememberPwd'),
+      username: load('username'),
+      pwd: load('pwd')
     }
   },
   methods: {
@@ -39,7 +46,6 @@ export default {
       this.$router.go(-1)
     },
     login() {
-      console.log(this.$route)
       let user = window.localStorage.__user__
       if (user) {
         user = JSON.parse(user)
@@ -53,6 +59,17 @@ export default {
         this.loggedFn1 = true
         this.$emit('login-in', this.loggedFn1)
         alert('登录成功！')
+
+        if (this.rememberPwd) {
+          save('username', username)
+          save('pwd', pwd)
+        } else {
+          let remember = {}
+          remember['username'] = ''
+          remember['pwd'] = ''
+          window.localStorage.__remember__ = JSON.stringify(remember)
+        }
+
         this.$router.go(-1)
       } else {
         alert('用户名或密码错误！')
@@ -60,6 +77,14 @@ export default {
     },
     register() {
       this.$router.push('register')
+    },
+    toggleRemember() {
+      this.rememberPwd = !this.rememberPwd
+      save('rememberPwd', this.rememberPwd)
+      if (!this.rememberPwd) {
+        save('username', '')
+        save('pwd', '')
+      }
     }
   }
 }
@@ -119,6 +144,22 @@ export default {
         font-size: 16px;
         line-height: 40px;
         box-sizing: border-box;
+      }
+    }
+  }
+
+  .remember {
+    text-align: right;
+    padding: 0 20px 20px;
+    font-size: 14px;
+
+    .iconfont {
+      font-size: 14px;
+      margin-right: 2px;
+      color: #a0a0a0;
+
+      &.yes {
+        color: rgb(0, 160, 240);
       }
     }
   }
